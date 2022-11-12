@@ -17,4 +17,4 @@ async function translatetext(translate){
 }
 translatetext(translate);
 
-translatetext({lang: 'pt',  content:"bullshit"});
+
