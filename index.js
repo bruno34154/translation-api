@@ -22,7 +22,6 @@ app.post('/translate', async (req, res)=>{
     try{
     const {lang, content} = req.body; //wait for a form with inputs of lang and content
     const translate = {lang: lang,  content: content}
-    console.log("essa rota vai pegar a minha tradução");
     const translation = await translatetext(translate)
   
         return res.json({message: translation});
