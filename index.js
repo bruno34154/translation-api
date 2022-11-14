@@ -1,20 +1,41 @@
-const puppeteer = require('puppeteer');
 const express = require("express");
 const app = express();
-const translate = {lang: 'en',  content:"traduza esta mensagem"}
-async function translatetext(translate){
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    const url =  `https://translate.google.com/#view=home&op=translate&sl=auto&tl=${translate.lang}&text=${encodeURIComponent(translate.content)}`;
-    
-    await page.goto(url);
-    await page.waitForSelector(".ryNqvb");
-    const result = await page.evaluate(()=>{
-        return document.querySelector(".ryNqvb").innerText;
-    })
+const bodyParser = require('body-parser')
+const cors = require('cors');
+const translatetext = require("./modules/translation.js");
+
+app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.json());
+    app.use(express.json());
+    app.use((req, res, next) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+        res.header(
+            "Access-Control-Allow-Headers",
+            "X-PINGOTHER, Content-Type, Authorization"
+        );
+        app.use(cors());
+        next();
+  });
+
+app.post('/translate', async (req, res)=>{
+    try{
+    const {lang, content} = req.body; //wait for a form with inputs of lang and content
+    const translate = {lang: lang,  content: content}
+    console.log("essa rota vai pegar a minha tradução");
+    const translation = await translatetext(translate)
+  
+        return res.json({message: translation});
+    }
+    catch{
+        return res.json({message: 'erro'});
+    }
    
-    console.log(result);
-}
-translatetext(translate);
+    
+    
+    
+})
 
-
+app.listen('3004', ()=>{
+    console.log("rodando na 3004");
+})
