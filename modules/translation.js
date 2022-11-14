@@ -1,5 +1,5 @@
 const puppeteer = require("puppeteer");
-const translate = { lang: "en", content: "traduza esta mensagem" };
+
 async function translatetext(translate) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
