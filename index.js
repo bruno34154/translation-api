@@ -18,7 +18,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/translate", async (req, res) => {
+app.post("/", async (req, res) => {
   try {
     const { lang, content } = req.body; //wait for a form with inputs of lang and content
     const translate = { lang: lang, content: content };
