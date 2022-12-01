@@ -10,8 +10,6 @@ if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
 }
 
 
-
-
 async function translatetext(translate) {
   let options = {};
   if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
