@@ -4,7 +4,7 @@
 This API translate a sentence to any language in google tranlate by webscraping.
 
 ## Instructions
-* 1- Call the API using the link: https://translation-api-six.vercel.app/ in your project (you'll the method POST for call the API with Axios, Fetch etc...)
+* 1- Call the API using the link: https://translation-api-six.vercel.app/ in your project (you'll use the method POST for call the API with Axios, Fetch, etc...)
 * 2- The API waits for two parameters content (the message that you to want translate) and lang (the language you going to translate)
 * 3 - Examples: you can pass the data by object: {content: "message to translate", lang: "en"}  or by form (basically you gonna have two inputs one with name content and other with the name lang)
 * 4 - The language you have to pass by the short name of the language.
